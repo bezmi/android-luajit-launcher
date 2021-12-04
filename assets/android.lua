@@ -490,6 +490,10 @@ enum {
     ASCREEN_ORIENTATION_REVERSE_LANDSCAPE = 8,
     ASCREEN_ORIENTATION_REVERSE_PORTRAIT = 9,
     ASCREEN_ORIENTATION_FULL_SENSOR = 10,
+    ASCREEN_ORIENTATION_USER_LANDSCAPE = 11,
+    ASCREEN_ORIENTATION_USER_PORTRAIT = 12,
+    ASCREEN_ORIENTATION_FULL_USER = 13,
+    ASCREEN_ORIENTATION_LOCKED = 14
 };
 
 enum {
@@ -1980,7 +1984,7 @@ local function run(android_app_state)
         end,
         set = function(new_orientation)
             if new_orientation >= C.ASCREEN_ORIENTATION_UNSPECIFIED and
-                new_orientation <= C.ASCREEN_ORIENTATION_FULL_SENSOR then
+                new_orientation <= C.ASCREEN_ORIENTATION_LOCKED then
                 JNI:context(android.app.activity.vm, function(jni)
                     jni:callVoidMethod(
                         android.app.activity.clazz,
